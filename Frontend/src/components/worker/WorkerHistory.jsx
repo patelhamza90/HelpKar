@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { handleError } from "../../utils/utils";
 import "../../styles/WorkerTable.css";
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = "https://helpkar.onrender.com";
 
 const WorkerHistory = ({ workerToken }) => {
 

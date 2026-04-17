@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { handleError, handleSuccess } from "../../utils/utils";
 import { FiSearch, FiFilter, FiMoreVertical } from "react-icons/fi";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = "https://helpkar.onrender.com";
 
 const ManageWorkers = () => {
 

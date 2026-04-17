@@ -5,7 +5,7 @@ import { handleError, handleSuccess } from "../utils/utils";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faStar } from "@fortawesome/free-solid-svg-icons";
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = "https://helpkar.onrender.com";
 
 const BookService = () => {
 

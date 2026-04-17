@@ -10,7 +10,7 @@ import { handleError } from "../utils/utils";
 import WorkerDashboard from "../components/worker/WorkerDashboard";
 import WorkerHistory from "../components/worker/WorkerHistory";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = "https://helpkar.onrender.com";
 
 const Worker = () => {
 

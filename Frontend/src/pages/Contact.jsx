@@ -5,7 +5,7 @@ import { handleError, handleSuccess } from "../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { servicesData } from "../data/serviceData";
 import Footer from "../components/Footer";
-const BASE_URL = import.meta.env.VITE_API_URL;
+ const BASE_URL = "https://helpkar.onrender.com";;
 
 const Contact = () => {
   const navigate = useNavigate();

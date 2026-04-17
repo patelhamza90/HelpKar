@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { handleError, handleSuccess } from "../../utils/utils";
 import { FiSearch } from "react-icons/fi";
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = "https://helpkar.onrender.com";
 
 const Applications = () => {
 

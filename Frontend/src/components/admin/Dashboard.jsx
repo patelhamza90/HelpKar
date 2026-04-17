@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { handleError } from "../../utils/utils";
 import axios from "axios";
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = "https://helpkar.onrender.com";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
