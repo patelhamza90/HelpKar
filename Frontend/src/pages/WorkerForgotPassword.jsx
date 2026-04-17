@@ -36,7 +36,7 @@ const WorkerForgotPassword = () => {
 
         try {
             const { data } = await axios.post(
-                `${BASE_URL}/api/auth/worker/signin/verify-uid`,
+                `https://helpkar.onrender.com/api/auth/worker/signin/verify-uid`,
                 {
                     workerUID: form.workerUID,
                     email: form.email
@@ -77,7 +77,7 @@ const WorkerForgotPassword = () => {
 
         try {
 
-            const url = `${BASE_URL}/api/auth/worker/signin/forgot-password`;
+            const url = `https://helpkar.onrender.com/api/auth/worker/signin/forgot-password`;
 
             const { data } = await axios.post(url, {
                 workerUID: form.workerUID,

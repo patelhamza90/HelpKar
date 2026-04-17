@@ -19,7 +19,7 @@ const WorkerRequests = () => {
 
     try {
 
-      const url = `${BASE_URL}/api/booking/list/booking-request`;
+      const url = `https://helpkar.onrender.com/api/booking/list/booking-request`;
 
       const res = await axios.get(url, {
         headers: { Authorization: `Bearer ${workerToken}` }
@@ -39,7 +39,7 @@ const WorkerRequests = () => {
 
   const handleAction = async (id, action) => {
     try {
-      const url = `${BASE_URL}/api/booking/change/action`;
+      const url = `https://helpkar.onrender.com/api/booking/change/action`;
 
       const res = await axios.put(
         url,

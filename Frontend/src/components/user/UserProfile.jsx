@@ -45,7 +45,7 @@ const UserProfile = ({ userData, setUserData }) => {
       if (frmData.profileImage instanceof File)
         formData.append("profileImage", frmData.profileImage);
 
-      const url = `${BASE_URL}/api/user/user-profile/update`;
+      const url = `https://helpkar.onrender.com/api/user/user-profile/update`;
 
       const { data } = await axios.put(url, formData, {
         headers: { Authorization: `Bearer ${token}` }
@@ -71,7 +71,7 @@ const UserProfile = ({ userData, setUserData }) => {
 
     try {
 
-      const url = `${BASE_URL}/api/booking/user-stats`;
+      const url = `https://helpkar.onrender.com/api/booking/user-stats`;
 
       const { data } = await axios.get(url, {
         headers: { Authorization: `Bearer ${token}` }

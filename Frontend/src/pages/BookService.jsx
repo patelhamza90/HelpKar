@@ -54,10 +54,10 @@ const BookService = () => {
         try {
 
             const [servicesRes, userRes] = await Promise.all([
-                axios.get(`${BASE_URL}/api/booking/list-service/${serviceId}`, {
+                axios.get(`https://helpkar.onrender.com/api/booking/list-service/${serviceId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 }),
-                axios.get(`${BASE_URL}/api/booking/list/user-data`, {
+                axios.get(`https://helpkar.onrender.com/api/booking/list/user-data`, {
                     headers: { Authorization: `Bearer ${token}` }
                 }),
             ]);
@@ -99,7 +99,7 @@ const BookService = () => {
 
         try {
 
-            const url = `${BASE_URL}/api/booking/create`;
+            const url = `https://helpkar.onrender.com/api/booking/create`;
 
 
             const { data } = await axios.post(url, {

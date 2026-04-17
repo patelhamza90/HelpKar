@@ -33,7 +33,7 @@ const User = () => {
   const fetchData = async () => {
     try {
 
-      const url = `${BASE_URL}/api/user/user-profile`;
+      const url = `https://helpkar.onrender.com/api/user/user-profile`;
 
       const { data } = await axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
 
@@ -46,7 +46,7 @@ const User = () => {
 
   const fetchService = async () => {
     try {
-      const url = `${BASE_URL}/api/booking/service-for-user`;
+      const url = `https://helpkar.onrender.com/api/booking/service-for-user`;
 
       const { data } = await axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
 
@@ -230,7 +230,7 @@ const User = () => {
                 className="accept"
                 onClick={async () => {
                   try {
-                    const url = `${BASE_URL}/api/booking/add-review`;
+                    const url = `https://helpkar.onrender.com/api/booking/add-review`;
 
                     const { data } = await axios.put(url, {
                       bookingId: selectedBooking,

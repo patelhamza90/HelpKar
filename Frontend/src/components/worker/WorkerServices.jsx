@@ -33,7 +33,7 @@ const WorkerServices = () => {
     const toggleStatus = async () => {
         try {
 
-            const url = `${BASE_URL}/api/worker/services/update-status`;
+            const url = `https://helpkar.onrender.com/api/worker/services/update-status`;
 
             const { data } = await axios.put(url, { isAvailable: !services.isAvailable }, { headers: { Authorization: `Bearer ${token}` } })
 
@@ -86,7 +86,7 @@ const WorkerServices = () => {
             formData.append("radiusKM", services.radiusKM);
             formData.append("icon", services.icon);
 
-            const url = `${BASE_URL}/api/worker/services/create`;
+            const url = `https://helpkar.onrender.com/api/worker/services/create`;
 
             const { data } = await axios.post(url, formData, {
                 headers: {
@@ -114,7 +114,7 @@ const WorkerServices = () => {
     const fetchService = async () => {
         try {
 
-            const url = `${BASE_URL}/api/worker/services/list`;
+            const url = `https://helpkar.onrender.com/api/worker/services/list`;
 
             const { data } = await axios.get(url, {
                 headers: {
@@ -146,7 +146,7 @@ const WorkerServices = () => {
             formData.append("price", services.price);
             formData.append("radiusKM", services.radiusKM);
 
-            const url = `${BASE_URL}/api/worker/services/update`;
+            const url = `https://helpkar.onrender.com/api/worker/services/update`;
 
             if (services.icon instanceof File) {
                 formData.append("icon", services.icon);

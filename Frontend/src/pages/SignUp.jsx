@@ -32,7 +32,7 @@ const SignUp = () => {
 
     try {
 
-      const url = `${BASE_URL}/api/auth/user/signup`;
+      const url = `https://helpkar.onrender.com/api/auth/user/signup`;
       const { data } = await axios.post(url, form);
 
       const { message, success } = data;

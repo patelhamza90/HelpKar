@@ -12,7 +12,7 @@ const WorkerHistory = ({ workerToken }) => {
 
     try {
 
-      const url = `${BASE_URL}/api/booking/list/worker-history`;
+      const url = `https://helpkar.onrender.com/api/booking/list/worker-history`;
 
       const res = await axios.get(url, {
         headers: { Authorization: `Bearer ${workerToken}` }

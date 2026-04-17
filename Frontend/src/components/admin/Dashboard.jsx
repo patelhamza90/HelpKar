@@ -19,7 +19,7 @@ const [workerData, setWorkerData] = useState({
   const fetchData = async () => {
     try {
 
-      const url = `${BASE_URL}/api/admin/list/worker-data`;
+      const url = `https://helpkar.onrender.com/api/admin/list/worker-data`;
 
       const { data } = await axios.get(url);
 

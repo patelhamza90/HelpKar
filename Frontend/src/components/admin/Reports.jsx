@@ -15,7 +15,7 @@ const Reports = () => {
     try {
 
       const { data } = await axios.get(
-        `${BASE_URL}/api/admin/reports?type=${type}`
+        `https://helpkar.onrender.com/api/admin/reports?type=${type}`
       );
 
       setReport(data.response);

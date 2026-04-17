@@ -16,7 +16,7 @@ const WorkerDashboard = ({ workerToken, requests = [] }) => {
   const fetchRecord = async () => {
     try {
 
-      const url = `${BASE_URL}/api/booking/list/worker-data`;
+      const url = `https://helpkar.onrender.com/api/booking/list/worker-data`;
 
       const { data } = await axios.get(url, {
         headers: { Authorization: `Bearer ${workerToken}` }

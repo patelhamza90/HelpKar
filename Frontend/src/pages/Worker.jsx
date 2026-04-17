@@ -46,7 +46,7 @@ const Worker = () => {
         return;
       }
 
-      const url = `${BASE_URL}/api/worker/worker-dashboard`;
+      const url = `https://helpkar.onrender.com/api/worker/worker-dashboard`;
       const { data } = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${workerToken}`

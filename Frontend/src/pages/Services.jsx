@@ -73,10 +73,10 @@ const Services = () => {
     const fetchData = async () => {
         try {
             const [servicesRes, priceRes, workersRes, categoriesRes] = await Promise.all([
-                axios.get(`${BASE_URL}/api/services/list`),
-                axios.get(`${BASE_URL}/api/services/list/highestPrice`),
-                axios.get(`${BASE_URL}/api/services/list/workerData`),
-                axios.get(`${BASE_URL}/api/services/list/category`)
+                axios.get(`https://helpkar.onrender.com/api/services/list`),
+                axios.get(`https://helpkar.onrender.com/api/services/list/highestPrice`),
+                axios.get(`https://helpkar.onrender.com/api/services/list/workerData`),
+                axios.get(`https://helpkar.onrender.com/api/services/list/category`)
             ]);
 
             setServices(servicesRes.data.response);

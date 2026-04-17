@@ -60,7 +60,7 @@ const Contact = () => {
       formData.append('city', form.city);
       formData.append('idProof', form.idProof);
 
-      const url = `${BASE_URL}/api/auth/worker/signup`;
+      const url = `https://helpkar.onrender.com/api/auth/worker/signup`;
 
       const { data } = await axios.post(url, formData);
 
@@ -107,7 +107,7 @@ const Contact = () => {
 
       await new Promise(resolve => setTimeout(resolve, 800))
 
-      const url = `${BASE_URL}/api/user/complaint/submit`;
+      const url = `https://helpkar.onrender.com/api/user/complaint/submit`;
 
       const { data } = await axios.post(url, { complaint }, { headers: { Authorization: `Bearer ${token}` } });
 

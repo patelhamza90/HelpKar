@@ -75,8 +75,8 @@ const Payment = () => {
         try {
 
             const [servicesRes, userRes] = await Promise.all([
-                axios.get(`${BASE_URL}/api/booking/list-service/${serviceId}`, { headers: { Authorization: `Bearer ${token}` } }),
-                axios.get(`${BASE_URL}/api/booking/list/user-data`, { headers: { Authorization: `Bearer ${token}` } }),
+                axios.get(`https://helpkar.onrender.com/api/booking/list-service/${serviceId}`, { headers: { Authorization: `Bearer ${token}` } }),
+                axios.get(`https://helpkar.onrender.com/api/booking/list/user-data`, { headers: { Authorization: `Bearer ${token}` } }),
             ]);
 
             if (!servicesRes.data.success || !userRes.data.success) {

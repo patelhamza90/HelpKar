@@ -16,7 +16,7 @@ const ManageWorkers = () => {
 
     try {
 
-      const url = `${BASE_URL}/api/admin/list/manage-worker`;
+      const url = `https://helpkar.onrender.com/api/admin/list/manage-worker`;
 
       const { data } = await axios.get(url);
 
@@ -46,7 +46,7 @@ const ManageWorkers = () => {
     try {
 
       const { data } = await axios.delete(
-        `${BASE_URL}/api/admin/remove-worker/${id}`
+        `https://helpkar.onrender.com/api/admin/remove-worker/${id}`
       );
 
       if (data.success) {

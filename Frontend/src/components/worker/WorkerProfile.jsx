@@ -36,7 +36,7 @@ const WorkerProfile = ({ user }) => {
     const handleSave = async () => {
 
         try {
-            const url = `${BASE_URL}/api/worker/worker-profile-update`;
+            const url = `https://helpkar.onrender.com/api/worker/worker-profile-update`;
 
             const token = localStorage.getItem("workerToken");
 

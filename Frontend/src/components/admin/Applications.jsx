@@ -16,7 +16,7 @@ const Applications = () => {
 
     try {
 
-      const url = `${BASE_URL}/api/admin/list/worker-application`;
+      const url = `https://helpkar.onrender.com/api/admin/list/worker-application`;
 
       const { data } = await axios.get(url);
 
@@ -35,7 +35,7 @@ const Applications = () => {
 
       if (!status) return;
 
-      const url = `${BASE_URL}/api/admin/update-status/${id}`;
+      const url = `https://helpkar.onrender.com/api/admin/update-status/${id}`;
 
       const { data } = await axios.put(url, {
         applicationStatus: status

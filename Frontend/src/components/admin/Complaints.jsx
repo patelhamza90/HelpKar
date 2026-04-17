@@ -30,7 +30,7 @@ const Complaints = () => {
   const fetchData = async () => {
 
     try {
-      const url = `${BASE_URL}/api/admin/list/user-feedback`;
+      const url = `https://helpkar.onrender.com/api/admin/list/user-feedback`;
 
       const { data } = await axios.get(url);
 
@@ -51,7 +51,7 @@ const Complaints = () => {
       const payload = responses[id] || {};
 
       await axios.put(
-        `${BASE_URL}/api/admin/update/complaint`,
+        `https://helpkar.onrender.com/api/admin/update/complaint`,
         {
           id,
           status: payload.status || "resolved",
