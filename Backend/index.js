@@ -11,10 +11,15 @@ const servicesRoutes = require('./Routes/servicesRoutes');
 const bookingRoutes = require('./Routes/bookingRoutes');
 const userRoutes = require('./Routes/userRoutes');
 const adminRoutes = require('./Routes/adminRoutes');
+
 app.use(cors());
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT;
+
+app.get("/", (req, res) => {
+  res.status(200).send("HelpKar Backend Running 🚀");
+});
 
 /* ============= Auth Routing================ */
 app.use("/api/auth", authRoutes);
