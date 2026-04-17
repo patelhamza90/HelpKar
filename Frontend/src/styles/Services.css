@@ -1,0 +1,320 @@
+/* --- Root Styles & Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.app-layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+/* --- DARK SIDEBAR (Kept same as yours) --- */
+
+.dark-sidebar {
+    width: 270px;
+    background-color: #12141d;
+    color: white;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;              /* ← change to 0, not 70px */
+    height: 100vh;       /* ← full viewport height */
+    overflow-y: auto;
+    align-self: flex-start;
+}
+
+.filters-container {
+    margin-top: 30px;
+    border-top: 1px solid #2a2d3a;
+    padding-top: 20px;
+}
+
+.filters-title {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.sidebar-input,
+.sidebar-select {
+    width: 100%;
+    background-color: #242736;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: #a0a0a0;
+    margin-bottom: 12px;
+    outline: none;
+    font-size: 14px;
+}
+
+.range-box {
+    margin-top: 20px;
+}
+
+.range-box label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #efefef;
+}
+
+.orange-range {
+    width: 100%;
+    accent-color: #fca311;
+    cursor: pointer;
+}
+
+.range-label {
+    font-size: 13px;
+    color: #fca311;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* --- MAIN VIEWPORT --- */
+.main-viewport {
+    flex: 1;
+    background-color: #f8f9fa;  /* ← explicit bg to cover dark bleed */
+    min-height: 100vh;
+}
+
+.navbar-top {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 50px;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.black-login-btn {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 8px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* --- NEW UPDATED CARD DESIGN (Same as Image) --- */
+.content-padding {
+    padding: 20px 50px;
+    margin-left: 70px;
+}
+
+.section-heading {
+    font-size: 24px;
+    color: #111827;
+    margin-bottom: 30px;
+}
+
+.services-flex-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.service-type {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    backdrop-filter: blur(3px);
+}
+
+.service-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 18px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+}
+
+.card-img-container {
+    width: 100%;
+    height: 180px;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f8fafc;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bookmark-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    padding: 5px;
+    border-radius: 6px;
+    color: white;
+    font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.service-type-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f97316;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.name-tag {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 6px;
+}
+
+.service-desc {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.rating-box {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    backdrop-filter: blur(3px);
+}
+
+.star-yellow {
+    color: #fbbf24;
+}
+
+.design-tag {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    min-height: 40px;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.info-icon {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-container span {
+    font-size: 12px;
+    color: #6b7280;
+    display: block;
+}
+
+.price-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.booking-btn {
+    background: #f97316;
+    color: white;
+
+    border: none;
+    padding: 10px 22px;
+
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.booking-btn:hover {
+    background: #ea580c;
+}
+
+.worker-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 6px;
+}

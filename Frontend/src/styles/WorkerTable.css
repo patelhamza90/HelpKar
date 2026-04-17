@@ -1,0 +1,103 @@
+.wrktbl-container {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+}
+
+.wrktbl-controls {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.wrktbl-search {
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    width: 220px;
+}
+
+.wrktbl-filter {
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+
+.wrktbl-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.wrktbl-table th {
+    background: #f9fafb;
+    padding: 14px;
+    text-align: left;
+    font-size: 13px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.wrktbl-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.wrktbl-table tr:hover {
+    background: #f9fafb;
+}
+
+.wrk-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.wrk-badge.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.wrk-badge.accepted {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.wrk-badge.completed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.wrk-badge.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.wrk-accept {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+.wrk-reject {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.wrk-complete {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}

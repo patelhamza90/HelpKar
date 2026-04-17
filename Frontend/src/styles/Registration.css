@@ -1,0 +1,162 @@
+.login-container {
+  height: 100vh;
+  background: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-card {
+  width: 900px;
+  height: 500px;
+  background: white;
+  color: #0c131c;
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* LEFT PANEL */
+.login-left {
+  flex: 1;
+  background: linear-gradient(135deg, #0a1425, #0d3b7a);
+  color: white;
+  padding: 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-left h1 {
+  letter-spacing: 3px;
+  font-size: 32px;
+}
+
+.login-left h2 {
+  font-size: 38px;
+  margin-top: 10px;
+}
+
+.blue {
+  color: #2d6cdf;
+}
+
+.orange {
+  color: #f57c00;
+}
+
+.tagline {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Decorative Circles */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+}
+
+.circle1 {
+  width: 180px;
+  height: 180px;
+  bottom: -40px;
+  left: 40px;
+}
+
+.circle2 {
+  width: 120px;
+  height: 120px;
+  bottom: 60px;
+  right: -40px;
+}
+
+
+/* RIGHT PANEL */
+.login-right {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-right h2 {
+  margin-bottom: 10px;
+}
+
+.sub-text {
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: gray;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.remember-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.forgot {
+  color: #2d6cdf;
+  cursor: pointer;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #1e4fa3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.login-btn:hover {
+  background: #163d80;
+}
+
+.other-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #0c131c;
+  cursor: pointer;
+}
+.other-btn:hover {
+    background: black;
+    color: white;
+}
+
+.signup-link {
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+.signup-link span {
+  color: #f57c00;
+  cursor: pointer;
+  font-weight: bold;
+}

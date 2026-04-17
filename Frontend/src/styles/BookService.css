@@ -1,0 +1,152 @@
+.book-wrapper {
+    background: #f6f8fc;
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.book-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+}
+
+.book-left {
+    flex: 2;
+}
+
+.book-left h1 {
+    margin-bottom: 10px;
+}
+
+.book-right {
+    flex: 1;
+}
+
+.book-right h4 {
+    margin-bottom: 10px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card p {
+    margin: 8px 0;
+}
+
+.wd {
+    margin-bottom: 10px;
+}
+
+.user-header {
+    display: flex;
+    gap: 220px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.editBtn {
+    background: #2563eb;
+    border: none;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    left: 270px;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-form input,
+.user-form textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.user-view p {
+    margin: 6px 0;
+}
+
+.order-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.order-card input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.continue-btn {
+    margin-top: 15px;
+    padding: 14px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.continue-btn:hover {
+    background: #1e4ed8;
+}
+
+.card {
+    position: relative;
+}
+
+.editIcon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #2563eb;
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.editIcon:hover {
+    background: #1e4ed8;
+}
+
+/* responsive */
+
+@media(max-width:900px) {
+
+    .book-container {
+        flex-direction: column;
+    }
+
+}
