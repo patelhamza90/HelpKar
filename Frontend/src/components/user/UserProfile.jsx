@@ -3,6 +3,8 @@ import { handleError, handleSuccess } from "../../utils/utils";
 import axios from "axios";
 import "../../styles/UserProfile.css";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const UserProfile = ({ userData, setUserData }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [frmData, setFrmData] = useState(userData);
@@ -43,14 +45,14 @@ const UserProfile = ({ userData, setUserData }) => {
       if (frmData.profileImage instanceof File)
         formData.append("profileImage", frmData.profileImage);
 
-      const url = "http://localhost:8000/api/user/user-profile/update";
+      const url = `${BASE_URL}/api/user/user-profile/update`;
 
       const { data } = await axios.put(url, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
       if (!data.success) {
-        return handleError(data.message);
+        return handleError(error.response?.data?.message || error.message);;
       }
 
       handleSuccess(data.message);
@@ -61,7 +63,7 @@ const UserProfile = ({ userData, setUserData }) => {
       setIsEditing(false);
 
     } catch (error) {
-      handleError(error.message);
+      handleError(error.response?.data?.message || error.message);
     }
   };
 
@@ -69,20 +71,20 @@ const UserProfile = ({ userData, setUserData }) => {
 
     try {
 
-      const url = "http://localhost:8000/api/booking/user-stats";
+      const url = `${BASE_URL}/api/booking/user-stats`;
 
       const { data } = await axios.get(url, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
       if (!data.success) {
-        return handleError(data.message);
+        return handleError(error.response?.data?.message || error.message);
       }
 
       setStats(data.response);
 
     } catch (error) {
-      handleError(error.message);
+      handleError(error.response?.data?.message || error.message);
     }
 
   };

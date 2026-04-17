@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 import axios from "axios";
+import { handleError } from "../utils/utils";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 function Home() {
   const navigate = useNavigate();
@@ -12,13 +14,14 @@ function Home() {
   const [avgRating, setAvgRating] = useState(0);
 
   const fetchStats = async () => {
-
-    const { data } = await axios.get("http://localhost:8000/api/services/home-stats");
-
+  try {
+    const { data } = await axios.get(`${BASE_URL}/api/services/home-stats`);
     setStats(data.response.services);
     setAvgRating(data.response.avgRating);
-
+  } catch (error) {
+    handleError(error);
   }
+};
 
   useEffect(() => {
     fetchStats();
@@ -85,7 +88,7 @@ function Home() {
                 </div>
               ))}
 
-              <div>⭐ {avgRating.toFixed(1)} Avg Rating</div>
+              <div>⭐ {avgRating ? avgRating.toFixed(1) : "0.0"} Avg Rating</div>
 
             </div>
 

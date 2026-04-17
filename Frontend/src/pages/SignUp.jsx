@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import axios from "axios";
 import { handleSuccess, handleError } from "../utils/utils";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const SignUp = () => {
 
@@ -11,7 +12,7 @@ const SignUp = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone:"",
+    phone: "",
     gender: "",
     password: ""
   });
@@ -31,23 +32,22 @@ const SignUp = () => {
 
     try {
 
-      const url = "http://localhost:8000/api/auth/user/signup";
+      const url = `${BASE_URL}/api/auth/user/signup`;
       const { data } = await axios.post(url, form);
 
       const { message, success } = data;
 
       if (success) {
         handleSuccess(message);
-
         setTimeout(() => {
           navigate("/login");
         }, 1500);
+      } else {
+        handleError(message);
       }
 
     } catch (err) {
-
       handleError(err.response?.data?.message || "Registration Failed");
-
     } finally {
       setLoading(false);
     }
@@ -119,7 +119,7 @@ const SignUp = () => {
             {/* Gender Select */}
             <div className="input-group">
               <select
-               className="wrktbl-filter"
+                className="wrktbl-filter"
                 name="gender"
                 value={form.gender}
                 onChange={handleChange}

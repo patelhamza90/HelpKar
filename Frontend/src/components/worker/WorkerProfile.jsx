@@ -3,6 +3,8 @@ import "../../styles/WorkerProfile.css";
 import axios from "axios";
 import { handleError, handleSuccess } from "../../utils/utils";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const WorkerProfile = ({ user }) => {
 
     const [isEditing, setIsEditing] = useState(false);
@@ -34,7 +36,7 @@ const WorkerProfile = ({ user }) => {
     const handleSave = async () => {
 
         try {
-            const url = "http://localhost:8000/api/worker/worker-profile-update"
+            const url = `${BASE_URL}/api/worker/worker-profile-update`;
 
             const token = localStorage.getItem("workerToken");
 
@@ -58,11 +60,11 @@ const WorkerProfile = ({ user }) => {
                 handleSuccess(message);
                 setIsEditing(false);
             } else {
-                handleError(error);
+                handleError(error?.message || "Something went wrong");
             }
 
         } catch (err) {
-            handleError(err);
+            handleError(err.response?.data?.message || err.message);
         }
 
     };

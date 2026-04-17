@@ -3,6 +3,7 @@ import "../../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { handleError, handleSuccess } from "../../utils/utils";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const AdminLogin = () => {
 
@@ -23,32 +24,30 @@ const AdminLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
-      const url = "http://localhost:8000/api/admin/signin"; 
+      const url = `${BASE_URL}/api/admin/signin`;
 
       const { data } = await axios.post(url, form);
 
-      const { success, message, token, role } = data;
+      const { success, message, token } = data;
 
-   if (success) {
+      if (success) {
 
-  handleSuccess(message);
+        handleSuccess(message);
 
-  // 🔥 sirf dusre tokens clear karo
-  localStorage.removeItem("userToken");
-  localStorage.removeItem("workerToken");
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("workerToken");
 
-  // ✅ admin token store karo
-  localStorage.setItem("token", token);
+        localStorage.setItem("token", token);
 
-  setTimeout(() => {
-    navigate("/admin");
-  }, 1000);
+        setTimeout(() => {
+          navigate("/admin");
+        }, 1000);
 
-} else {
-  handleError(message);
-}
+      } else {
+        handleError(message);
+      }
 
     } catch (err) {
       handleError(err.response?.data?.message || err.message);

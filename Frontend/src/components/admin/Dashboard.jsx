@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { handleError } from "../../utils/utils";
 import axios from "axios";
-
+const BASE_URL = import.meta.env.VITE_API_URL;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,7 +19,7 @@ const [workerData, setWorkerData] = useState({
   const fetchData = async () => {
     try {
 
-      const url = "http://localhost:8000/api/admin/list/worker-data";
+      const url = `${BASE_URL}/api/admin/list/worker-data`;
 
       const { data } = await axios.get(url);
 

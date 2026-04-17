@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { handleError, handleSuccess } from "../../utils/utils";
 import { FiSearch } from "react-icons/fi";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Applications = () => {
 
@@ -15,7 +16,7 @@ const Applications = () => {
 
     try {
 
-      const url = "http://localhost:8000/api/admin/list/worker-application";
+      const url = `${BASE_URL}/api/admin/list/worker-application`;
 
       const { data } = await axios.get(url);
 
@@ -34,7 +35,7 @@ const Applications = () => {
 
       if (!status) return;
 
-      const url = `http://localhost:8000/api/admin/update-status/${id}`;
+      const url = `${BASE_URL}/api/admin/update-status/${id}`;
 
       const { data } = await axios.put(url, {
         applicationStatus: status

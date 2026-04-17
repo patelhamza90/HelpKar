@@ -5,6 +5,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { handleError } from "../utils/utils";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Services = () => {
     const [search, setSearch] = useState("");
@@ -64,7 +65,7 @@ const Services = () => {
                 (selectedService === "All Services" || worker?.service === selectedService) &&
                 (city === "All Cities" || workerCity?.toLowerCase().includes(city.toLowerCase())) &&
                 (s.rating || 0) >= minRating &&
-                s.price <= maxPrice
+                (maxPrice === 0 || s.price <= maxPrice)
             );
         });
     }, [services, workerData, search, category, selectedService, city, minRating, maxPrice]);
@@ -72,16 +73,15 @@ const Services = () => {
     const fetchData = async () => {
         try {
             const [servicesRes, priceRes, workersRes, categoriesRes] = await Promise.all([
-                axios.get("http://localhost:8000/api/services/list"),
-                axios.get("http://localhost:8000/api/services/list/highestPrice"),
-                axios.get("http://localhost:8000/api/services/list/workerData"),
-                axios.get("http://localhost:8000/api/services/list/category")
+                axios.get(`${BASE_URL}/api/services/list`),
+                axios.get(`${BASE_URL}/api/services/list/highestPrice`),
+                axios.get(`${BASE_URL}/api/services/list/workerData`),
+                axios.get(`${BASE_URL}/api/services/list/category`)
             ]);
 
             setServices(servicesRes.data.response);
 
             setWorkerData(workersRes.data?.response || []);
-            console.log(workersRes.data?.response || []);
 
             const total = priceRes.data?.response?.[0]?.highestPrice || 0;
             const rounded = Math.ceil(total / 500) * 500;
@@ -92,7 +92,7 @@ const Services = () => {
             setCategories(categoriesRes.data.response);
 
         } catch (error) {
-            handleError(error.message);
+           handleError(error.response?.data?.message || error.message);
         }
     }
 

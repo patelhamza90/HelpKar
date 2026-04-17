@@ -3,6 +3,7 @@ import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { handleError, handleSuccess } from "../utils/utils";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
 
@@ -23,12 +24,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+      setLoading(true);
+
     try {
-      const url = "http://localhost:8000/api/auth/user/signin";
+      const url = `${BASE_URL}/api/auth/user/signin`;
 
       const { data } = await axios.post(url, form)
 
-      const { success, message, userToken, user, error } = data;
+      const { success, message, userToken, user } = data;
 
       if (success) {
 
@@ -53,7 +56,7 @@ const Login = () => {
         handleError(message);
       }
     } catch (err) {
-      handleError(err);
+      handleError(err.response?.data?.message || err.message);
     } finally {
       setLoading(false);
     }

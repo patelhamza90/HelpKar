@@ -4,6 +4,7 @@ import UserProfile from "../components/user/UserProfile";
 import "../styles/User.css";
 import { handleError, handleSuccess } from "../utils/utils";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const User = () => {
 
@@ -32,20 +33,20 @@ const User = () => {
   const fetchData = async () => {
     try {
 
-      const url = "http://localhost:8000/api/user/user-profile";
+      const url = `${BASE_URL}/api/user/user-profile`;
 
       const { data } = await axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
 
       setUserData(data.response);
 
     } catch (error) {
-      handleError(error.message);
+      handleError(error.response?.data?.message || error.message);
     }
   }
 
   const fetchService = async () => {
     try {
-      const url = "http://localhost:8000/api/booking/service-for-user";
+      const url = `${BASE_URL}/api/booking/service-for-user`;
 
       const { data } = await axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
 
@@ -56,7 +57,7 @@ const User = () => {
       setBookingData(data.response);
 
     } catch (error) {
-      handleError(error.message);
+      handleError(error.response?.data?.message || error.message);
     }
   }
 
@@ -228,28 +229,31 @@ const User = () => {
               <button
                 className="accept"
                 onClick={async () => {
+                  try {
+                    const url = `${BASE_URL}/api/booking/add-review`;
 
-                  const url = "http://localhost:8000/api/booking/add-review"
+                    const { data } = await axios.put(url, {
+                      bookingId: selectedBooking,
+                      rating,
+                      review
+                    }, {
+                      headers: { Authorization: `Bearer ${token}` }
+                    })
 
-                  const { data } = await axios.put(url, {
-                    bookingId: selectedBooking,
-                    rating,
-                    review
-                  }, {
-                    headers: { Authorization: `Bearer ${token}` }
-                  })
+                    if (!data.success) {
+                      return handleError(data.message)
+                    }
 
-                  if (!data.success) {
-                    return handleError(data.message)
+                    handleSuccess(data.message)
+
+                    setReviewOpen(false)
+                    setRating(0)
+                    setReview("")
+
+                    fetchService()
+                  } catch (err) {
+                    handleError(err.response?.data?.message || err.message);
                   }
-
-                  handleSuccess(data.message)
-
-                  setReviewOpen(false)
-                  setRating(0)
-                  setReview("")
-
-                  fetchService()
                 }}
               >
                 Submit

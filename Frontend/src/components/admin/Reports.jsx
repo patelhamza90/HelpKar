@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { handleError } from "../../utils/utils";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const Reports = () => {
 
   const [type, setType] = useState("weekly");
@@ -13,7 +15,7 @@ const Reports = () => {
     try {
 
       const { data } = await axios.get(
-        `http://localhost:8000/api/admin/reports?type=${type}`
+        `${BASE_URL}/api/admin/reports?type=${type}`
       );
 
       setReport(data.response);
@@ -22,7 +24,7 @@ const Reports = () => {
       console.log(data.response.data);
 
     } catch (error) {
-      handleError(error);
+      handleError(error.response?.data?.message || error.message);
     }
 
   };
@@ -100,7 +102,7 @@ const Reports = () => {
 
         <div className="report-card">
           <h3>Total Revenue</h3>
-          <p>₹{report?.revenue ||0}</p>
+          <p>₹{report?.revenue || 0}</p>
         </div>
 
       </div>

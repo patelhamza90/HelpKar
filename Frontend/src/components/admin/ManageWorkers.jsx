@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { handleError } from "../../utils/utils";
+import { handleError, handleSuccess } from "../../utils/utils";
 import { FiSearch, FiFilter, FiMoreVertical } from "react-icons/fi";
+
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const ManageWorkers = () => {
 
@@ -14,7 +16,7 @@ const ManageWorkers = () => {
 
     try {
 
-      const url = "http://localhost:8000/api/admin/list/manage-worker";
+      const url = `${BASE_URL}/api/admin/list/manage-worker`;
 
       const { data } = await axios.get(url);
 
@@ -44,7 +46,7 @@ const ManageWorkers = () => {
     try {
 
       const { data } = await axios.delete(
-        `http://localhost:8000/api/admin/remove-worker/${id}`
+        `${BASE_URL}/api/admin/remove-worker/${id}`
       );
 
       if (data.success) {

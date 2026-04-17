@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import WorkerRequests from "./WorkerRequests";
 import { handleError } from "../../utils/utils";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const WorkerDashboard = ({ workerToken, requests = [] }) => {
 
@@ -15,21 +16,20 @@ const WorkerDashboard = ({ workerToken, requests = [] }) => {
   const fetchRecord = async () => {
     try {
 
-      const url = "http://localhost:8000/api/booking/list/worker-data";
+      const url = `${BASE_URL}/api/booking/list/worker-data`;
 
       const { data } = await axios.get(url, {
         headers: { Authorization: `Bearer ${workerToken}` }
       });
 
       if (!data.success) {
-        handleError(data.message);
+        return handleError(data.message);
       }
 
       setData(data.response);
-      console.log(data.response);
 
     } catch (error) {
-      handleError(error.message);
+      handleError(error.response?.data?.message || error.message);
     }
   };
 

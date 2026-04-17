@@ -5,6 +5,7 @@ import { handleError, handleSuccess } from "../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { servicesData } from "../data/serviceData";
 import Footer from "../components/Footer";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const Contact = () => {
       formData.append('city', form.city);
       formData.append('idProof', form.idProof);
 
-      const url = "http://localhost:8000/api/auth/worker/signup";
+      const url = `${BASE_URL}/api/auth/worker/signup`;
 
       const { data } = await axios.post(url, formData);
 
@@ -106,7 +107,7 @@ const Contact = () => {
 
       await new Promise(resolve => setTimeout(resolve, 800))
 
-      const url = "http://localhost:8000/api/user/complaint/submit";
+      const url = `${BASE_URL}/api/user/complaint/submit`;
 
       const { data } = await axios.post(url, { complaint }, { headers: { Authorization: `Bearer ${token}` } });
 

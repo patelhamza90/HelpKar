@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { handleError, handleSuccess } from "../../utils/utils";
 import { FiSearch, FiCalendar } from "react-icons/fi";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Complaints = () => {
 
@@ -29,14 +30,14 @@ const Complaints = () => {
   const fetchData = async () => {
 
     try {
-      const url = "http://localhost:8000/api/admin/list/user-feedback";
+      const url = `${BASE_URL}/api/admin/list/user-feedback`;
 
       const { data } = await axios.get(url);
 
       setFeedbacks(data?.response || []);
 
     } catch (error) {
-      handleError(error);
+      handleError(error.response?.data?.message || error.message);
     }
   };
 
@@ -50,10 +51,10 @@ const Complaints = () => {
       const payload = responses[id] || {};
 
       await axios.put(
-        "http://localhost:8000/api/admin/update/complaint",
+        `${BASE_URL}/api/admin/update/complaint`,
         {
           id,
-          status: payload.status || "resolved", // 🔥 auto resolve
+          status: payload.status || "resolved",
           message: payload.message || "Issue resolved"
         }
       );

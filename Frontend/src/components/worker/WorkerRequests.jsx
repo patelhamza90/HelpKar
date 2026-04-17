@@ -3,6 +3,8 @@ import axios from "axios";
 import { handleError, handleSuccess } from "../../utils/utils";
 import '../../styles/WorkerTable.css';
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const WorkerRequests = () => {
 
   const workerToken = localStorage.getItem("workerToken");
@@ -17,7 +19,7 @@ const WorkerRequests = () => {
 
     try {
 
-      const url = "http://localhost:8000/api/booking/list/booking-request";
+      const url = `${BASE_URL}/api/booking/list/booking-request`;
 
       const res = await axios.get(url, {
         headers: { Authorization: `Bearer ${workerToken}` }
@@ -31,13 +33,13 @@ const WorkerRequests = () => {
       setData(res.data.response);
 
     } catch (error) {
-      handleError(error.message);
+      handleError(error.response?.data?.message || error.message);
     }
   };
 
   const handleAction = async (id, action) => {
     try {
-      const url = "http://localhost:8000/api/booking/change/action";
+      const url = `${BASE_URL}/api/booking/change/action`;
 
       const res = await axios.put(
         url,
@@ -50,7 +52,6 @@ const WorkerRequests = () => {
         return;
       }
 
-      // 🔥 YAHI SUCCESS MESSAGE
       handleSuccess(res.data.message);
 
       fetchRecord();

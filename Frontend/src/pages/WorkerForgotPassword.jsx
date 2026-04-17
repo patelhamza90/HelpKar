@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../utils/utils";
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const WorkerForgotPassword = () => {
 
     const navigate = useNavigate();
@@ -34,7 +36,7 @@ const WorkerForgotPassword = () => {
 
         try {
             const { data } = await axios.post(
-                "http://localhost:8000/api/auth/worker/signin/verify-uid",
+                `${BASE_URL}/api/auth/worker/signin/verify-uid`,
                 {
                     workerUID: form.workerUID,
                     email: form.email
@@ -75,7 +77,7 @@ const WorkerForgotPassword = () => {
 
         try {
 
-            const url = "http://localhost:8000/api/auth/worker/signin/forgot-password";
+            const url = `${BASE_URL}/api/auth/worker/signin/forgot-password`;
 
             const { data } = await axios.post(url, {
                 workerUID: form.workerUID,
@@ -100,7 +102,7 @@ const WorkerForgotPassword = () => {
 
 
         } catch (err) {
-            handleError(err);
+           handleError(err.response?.data?.message || err.message);
         }
         finally {
             setLoading(false);

@@ -6,6 +6,8 @@ import { handleError, handleSuccess } from "../../utils/utils";
 import axios from "axios";
 import { useEffect } from "react";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const WorkerServices = () => {
 
     const [editing, setEditing] = useState(null);
@@ -31,7 +33,7 @@ const WorkerServices = () => {
     const toggleStatus = async () => {
         try {
 
-            const url = "http://localhost:8000/api/worker/services/update-status";
+            const url = `${BASE_URL}/api/worker/services/update-status`;
 
             const { data } = await axios.put(url, { isAvailable: !services.isAvailable }, { headers: { Authorization: `Bearer ${token}` } })
 
@@ -84,7 +86,7 @@ const WorkerServices = () => {
             formData.append("radiusKM", services.radiusKM);
             formData.append("icon", services.icon);
 
-            const url = "http://localhost:8000/api/worker/services/create";
+            const url = `${BASE_URL}/api/worker/services/create`;
 
             const { data } = await axios.post(url, formData, {
                 headers: {
@@ -94,7 +96,6 @@ const WorkerServices = () => {
             const { message, success, error } = data;
 
             if (success) {
-
                 handleSuccess(message);
                 setHasService(true);
                 setServices(data.service);
@@ -113,7 +114,7 @@ const WorkerServices = () => {
     const fetchService = async () => {
         try {
 
-            const url = "http://localhost:8000/api/worker/services/list";
+            const url = `${BASE_URL}/api/worker/services/list`;
 
             const { data } = await axios.get(url, {
                 headers: {
@@ -127,18 +128,15 @@ const WorkerServices = () => {
                 setServices(response);
                 setHasService(true);
             }
-
         } catch (err) {
-            handleError(err.message);
+            handleError(err.response?.data?.message || err.message);
         }
 
     }
 
-
     const handleSaveService = async () => {
 
         try {
-
             setLoading(true);
 
             const formData = new FormData();
@@ -148,8 +146,7 @@ const WorkerServices = () => {
             formData.append("price", services.price);
             formData.append("radiusKM", services.radiusKM);
 
-
-            const url = "http://localhost:8000/api/worker/services/update";
+            const url = `${BASE_URL}/api/worker/services/update`;
 
             if (services.icon instanceof File) {
                 formData.append("icon", services.icon);

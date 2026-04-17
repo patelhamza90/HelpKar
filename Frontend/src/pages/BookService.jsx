@@ -5,6 +5,7 @@ import { handleError, handleSuccess } from "../utils/utils";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faStar } from "@fortawesome/free-solid-svg-icons";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const BookService = () => {
 
@@ -53,10 +54,10 @@ const BookService = () => {
         try {
 
             const [servicesRes, userRes] = await Promise.all([
-                axios.get(`http://localhost:8000/api/booking/list-service/${serviceId}`, {
+                axios.get(`${BASE_URL}/api/booking/list-service/${serviceId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 }),
-                axios.get("http://localhost:8000/api/booking/list/user-data", {
+                axios.get(`${BASE_URL}/api/booking/list/user-data`, {
                     headers: { Authorization: `Bearer ${token}` }
                 }),
             ]);
@@ -98,7 +99,7 @@ const BookService = () => {
 
         try {
 
-            const url = "http://localhost:8000/api/booking/create";
+            const url = `${BASE_URL}/api/booking/create`;
 
 
             const { data } = await axios.post(url, {

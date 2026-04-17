@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { handleError } from "../../utils/utils";
 import "../../styles/WorkerTable.css";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const WorkerHistory = ({ workerToken }) => {
 
@@ -11,7 +12,7 @@ const WorkerHistory = ({ workerToken }) => {
 
     try {
 
-      const url = "http://localhost:8000/api/booking/list/worker-history";
+      const url = `${BASE_URL}/api/booking/list/worker-history`;
 
       const res = await axios.get(url, {
         headers: { Authorization: `Bearer ${workerToken}` }

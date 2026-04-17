@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/Payment.css";
-import { handleError } from "../utils/utils";
+import { handleError, handleSuccess } from "../utils/utils";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Payment = () => {
 
@@ -62,9 +63,9 @@ const Payment = () => {
             setLoading(false);
 
             if (paymentMethod === "cod") {
-                alert("Order placed with Cash on Delivery");
+                handleSuccess("Order placed with Cash on Delivery");
             } else {
-                alert("Payment Successful");
+                handleSuccess("Payment Successful");
             }
 
         }, 2000);
@@ -74,8 +75,8 @@ const Payment = () => {
         try {
 
             const [servicesRes, userRes] = await Promise.all([
-                axios.get(`http://localhost:8000/api/booking/list-service/${serviceId}`, { headers: { Authorization: `Bearer ${token}` } }),
-                axios.get("http://localhost:8000/api/booking/list/user-data", { headers: { Authorization: `Bearer ${token}` } }),
+                axios.get(`${BASE_URL}/api/booking/list-service/${serviceId}`, { headers: { Authorization: `Bearer ${token}` } }),
+                axios.get(`${BASE_URL}/api/booking/list/user-data`, { headers: { Authorization: `Bearer ${token}` } }),
             ]);
 
             if (!servicesRes.data.success || !userRes.data.success) {
@@ -86,7 +87,7 @@ const Payment = () => {
             setUserDetails(userRes.data.response);
 
         } catch (error) {
-            handleError(error.message);
+            handleError(error.response?.data?.message || error.message);
         }
     };
 
@@ -98,7 +99,7 @@ const Payment = () => {
         <div className="payment-wrapper">
 
             <div className="payment-container">
-                
+
 
                 {/* RIGHT SIDE */}
                 <div className="payment-right">
@@ -205,7 +206,11 @@ const Payment = () => {
 
                     </div>
 
-                    <button className="pay-main-btn" onClick={handlePayment}>
+                    <button
+                        className="pay-main-btn"
+                        onClick={handlePayment}
+                        disabled={loading}
+                    >
                         Pay ₹{service.price}
                     </button>
 

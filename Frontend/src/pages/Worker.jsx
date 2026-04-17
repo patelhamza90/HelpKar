@@ -10,6 +10,8 @@ import { handleError } from "../utils/utils";
 import WorkerDashboard from "../components/worker/WorkerDashboard";
 import WorkerHistory from "../components/worker/WorkerHistory";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const Worker = () => {
 
   const navigate = useNavigate();
@@ -44,7 +46,7 @@ const Worker = () => {
         return;
       }
 
-      const url = "http://localhost:8000/api/worker/worker-dashboard";
+      const url = `${BASE_URL}/api/worker/worker-dashboard`;
       const { data } = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${workerToken}`
@@ -54,7 +56,7 @@ const Worker = () => {
       setUser(data)
     }
     catch (err) {
-      handleError(err);
+      handleError(err.response?.data?.message || err.message);
     }
   }
 
@@ -65,9 +67,9 @@ const Worker = () => {
   }, []);
 
   const handleLogout = () => {
-  localStorage.clear();
-  navigate("/home");
-};
+    localStorage.clear();
+    navigate("/home");
+  };
 
   const renderContent = () => {
     switch (activeTab) {

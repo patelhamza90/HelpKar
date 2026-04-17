@@ -3,6 +3,9 @@ import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { handleError, handleSuccess } from "../utils/utils";
+
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const WorkerLogin = () => {
 
     const navigate = useNavigate();
@@ -21,37 +24,35 @@ const WorkerLogin = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-
+        setLoading(true);
         try {
-            const url = "http://localhost:8000/api/auth/worker/signin";
+            const url = `${BASE_URL}/api/auth/worker/signin`;
 
             const { data } = await axios.post(url, form);
 
             const { message, error, success, workerToken, worker } = data;
 
-           if (success) {
-    handleSuccess(message);
+            if (success) {
+                handleSuccess(message);
 
-    // 🔥 sab purane tokens clear karo
-    localStorage.removeItem("userToken"); 
-    localStorage.removeItem("token"); // admin token
+                localStorage.removeItem("userToken");
+                localStorage.removeItem("token"); // admin token
 
-    // ✅ sirf worker token store karo
-    localStorage.setItem("workerToken", workerToken);
-    localStorage.setItem("workerName", worker.name);
+                localStorage.setItem("workerToken", workerToken);
+                localStorage.setItem("workerName", worker.name);
 
-    window.dispatchEvent(new Event("userUpdated"));
+                window.dispatchEvent(new Event("userUpdated"));
 
-    setTimeout(() => {
-        navigate("/worker");
-    }, 1000);
-} else {
-                const details = error?.details[0].message;
-                handleError(details);
+                setTimeout(() => {
+                    navigate("/worker");
+                }, 1000);
+            } else {
+                const details = error?.details?.[0]?.message;
+                handleError(details || message);
             }
 
         } catch (err) {
-            handleError(err);
+            handleError(err.response?.data?.message || err.message);
         } finally {
             setLoading(false);
         }
