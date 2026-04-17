@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 import axios from "axios";
 import { handleError } from "../utils/utils";
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL || "https://helpkar.onrender.com";
 
 function Home() {
   const navigate = useNavigate();
