@@ -15,7 +15,7 @@ function Home() {
 
   const fetchStats = async () => {
   try {
-    const { data } = await axios.get(`${BASE_URL}/api/services/home-stats`);
+    const { data } = await axios.get("https://helpkar.onrender.com/api/services/home-stats");
     console.log(BASE_URL);
     setStats(data.response.services);
     setAvgRating(data.response.avgRating);
