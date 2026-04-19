@@ -23,6 +23,13 @@ const Services = () => {
 
     const [services, setServices] = useState([]);
 
+    const getCity = (worker) => {
+        if (!worker?.city) return "";
+
+        const parts = worker.city.split(",");
+        return parts[parts.length - 1].trim(); // last part = city
+    };
+
     const servicesByCategory = useMemo(() => {
         if (!categories || categories.length === 0) return [];
 
@@ -38,7 +45,7 @@ const Services = () => {
         return [
             ...new Set(
                 (workerData || [])
-                    .map(w => w.city)
+                    .map(w => getCity(w))
                     .filter(Boolean)
             )
         ];
@@ -92,7 +99,7 @@ const Services = () => {
             setCategories(categoriesRes.data.response);
 
         } catch (error) {
-           handleError(error.response?.data?.message || error.message);
+            handleError(error.response?.data?.message || error.message);
         }
     }
 

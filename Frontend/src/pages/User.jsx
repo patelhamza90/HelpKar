@@ -132,7 +132,37 @@ const User = () => {
                       <p className="booking-price">
                         ₹ {b.serviceId?.price || 0}
                       </p>
+                      
+                      {b.status === "pending" && (
+                        <button
+                          className="cancel-btn"
+                          onClick={async () => {
+                            try {
 
+                              const url = "https://helpkar.onrender.com/api/booking/cancel-booking";
+
+                              const { data } = await axios.put(
+                                url,
+                                { bookingId: b._id },
+                                { headers: { Authorization: `Bearer ${token}` } }
+                              );
+
+                              if (!data.success) {
+                                return handleError(data.message);
+                              }
+
+                              handleSuccess(data.message);
+
+                              fetchService(); // refresh
+
+                            } catch (err) {
+                              handleError(err.response?.data?.message || err.message);
+                            }
+                          }}
+                        >
+                          Cancel Booking
+                        </button>
+                      )}
                       {b.status === "completed" && (b.rating === 0 || b.rating === undefined) && (
                         <button
                           className="review-btn"

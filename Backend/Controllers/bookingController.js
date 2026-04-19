@@ -274,6 +274,53 @@ const getBookingRequest = async (req, res) => {
     }
 };
 
+const cancelBookingByUser = async (req, res) => {
+    try {
+
+        const userId = req.user._id;
+        const { bookingId } = req.body;
+
+        const booking = await bookingModel.findById(bookingId);
+
+        if (!booking) {
+            return res.status(404).json({
+                success: false,
+                message: "Booking not found"
+            });
+        }
+
+        // ❗ security check
+        if (String(booking.userId) !== String(userId)) {
+            return res.status(403).json({
+                success: false,
+                message: "Unauthorized action"
+            });
+        }
+
+        // ❗ already completed check
+        if (booking.status === "completed") {
+            return res.status(400).json({
+                success: false,
+                message: "Cannot cancel completed booking"
+            });
+        }
+
+        booking.status = "cancelled";
+        await booking.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Booking cancelled successfully"
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
 const changeAction = async (req, res) => {
     try {
 
@@ -473,5 +520,5 @@ const getWorkerHistory = async (req, res) => {
 module.exports = {
     createBooking, listService, serviceForUser,
     getDataForWorker, getBookingRequest, changeAction,
-    userStats, addReview, getWorkerHistory
+    userStats, addReview, getWorkerHistory, cancelBookingByUser
 };
