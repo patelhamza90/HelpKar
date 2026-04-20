@@ -6,6 +6,7 @@ import { handleError } from "../utils/utils";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const BASE_URL = "https://helpkar.onrender.com";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Services = () => {
     const [search, setSearch] = useState("");
@@ -20,6 +21,7 @@ const Services = () => {
     const [maxPrice, setMaxPrice] = useState(0);
     const [priceLimit, setPriceLimit] = useState(100);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [services, setServices] = useState([]);
 
@@ -58,7 +60,7 @@ const Services = () => {
                 w => String(w._id) === String(s.workerId)
             );
 
-            const workerCity = worker?.city;
+            const workerCity = getCity(worker);
 
             const titleMatch = s.title?.toLowerCase().includes(search.toLowerCase());
 
@@ -102,6 +104,13 @@ const Services = () => {
             handleError(error.response?.data?.message || error.message);
         }
     }
+
+useEffect(() => {
+    if (location.state) {
+        setSearch(location.state.service || "");
+        setCity(location.state.city || "All Cities");
+    }
+}, [location.state]);
 
     useEffect(() => {
         setSelectedService("All Services");

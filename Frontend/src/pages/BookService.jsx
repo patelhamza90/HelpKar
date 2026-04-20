@@ -241,6 +241,7 @@ const BookService = () => {
                             type="date"
                             name="date"
                             value={order.date}
+                            min={new Date().toISOString().split("T")[0]}
                             onChange={handleOrderChange}
                         />
 
