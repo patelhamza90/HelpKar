@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { handleError } from "../utils/utils";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 const BASE_URL = "https://helpkar.onrender.com";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const Services = () => {
     const [search, setSearch] = useState("");
