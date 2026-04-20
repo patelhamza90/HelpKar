@@ -72,7 +72,7 @@ const Services = () => {
                 (titleMatch || serviceMatch) &&
                 (category === "All Categories" || worker?.category === category) &&
                 (selectedService === "All Services" || worker?.service === selectedService) &&
-                (city === "All Cities" || workerCity?.toLowerCase().trim() === city.toLowerCase().trim())) &&
+                (city === "All Cities" || workerCity?.toLowerCase().trim() === city.toLowerCase().trim()) &&
                 (s.rating || 0) >= minRating &&
                 (maxPrice === 0 || s.price <= maxPrice)
             );
