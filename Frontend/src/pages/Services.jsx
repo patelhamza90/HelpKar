@@ -53,29 +53,29 @@ const Services = () => {
         ];
     }, [workerData]);
 
-    const filteredServices = useMemo(() => {
-        return (services || []).filter((s) => {
+  const filteredServices = useMemo(() => {
+    return (services || []).filter((s) => {
 
-            const worker = workerData.find(
-                w => String(w._id) === String(s.workerId)
-            );
+        const worker = workerData.find(
+            w => String(w._id) === String(s.workerId)
+        );
 
-            const workerCity = getCity(worker);
+        const workerCity = getCity(worker);
 
-            const titleMatch = s.title?.toLowerCase().includes(search.toLowerCase());
+        const titleMatch = s.title?.toLowerCase().includes(search.toLowerCase());
 
-            const serviceMatch = worker?.service
-                ?.toLowerCase()
-                .includes(search.toLowerCase());
+        const serviceMatch = worker?.service
+            ?.toLowerCase()
+            .includes(search.toLowerCase());
 
-            return (
-                (titleMatch || serviceMatch) &&
-                (category === "All Categories" || worker?.category === category) &&
-                (selectedService === "All Services" || worker?.service === selectedService) &&
-                (city === "All Cities" || workerCity?.toLowerCase().trim() === city.toLowerCase().trim()) &&
-                (s.rating || 0) >= minRating &&
-                (maxPrice === 0 || s.price <= maxPrice)
-            );
+        return (
+            (titleMatch || serviceMatch) &&
+            (category === "All Categories" || worker?.category === category) &&
+            (selectedService === "All Services" || worker?.service === selectedService) &&
+            (city === "All Cities" || workerCity?.toLowerCase().trim() === city.toLowerCase().trim()) &&
+            (s.rating || 0) >= minRating &&
+            (maxPrice === 0 || s.price <= maxPrice)
+        );
     });
 }, [services, workerData, search, category, selectedService, city, minRating, maxPrice]);
 
